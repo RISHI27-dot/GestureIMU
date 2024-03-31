@@ -11,6 +11,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+
+#pragma pack(1)
+
 static const char *TAG = "mpu_example";
 struct acc_values *data;
 

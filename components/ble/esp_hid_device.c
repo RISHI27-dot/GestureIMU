@@ -165,12 +165,8 @@ esp_err_t ble_hid_task(void *data)
 {
     esp_err_t ret;
     struct acc_values *data1 = (struct acc_values *)(data);
-    uint8_t arr[3];
-    arr[0] = data1->ax;
-    arr[1] = data1->ay;
-    arr[2] = data1->az;
-    ESP_LOGI(TAG, "acce_raw_value = %d %d %d", arr[0], arr[1], arr[2]);
-    ret = esp_hidd_dev_input_set(s_ble_hid_param.hid_dev, 1, HID_RPT_ID_CC_IN, arr, HID_CC_IN_RPT_LEN);
+    ESP_LOGI(TAG, "acce_raw_value = %d %d %d", data1->ax, data1->ay, data1->az);
+    ret = esp_hidd_dev_input_set(s_ble_hid_param.hid_dev, 1, HID_RPT_ID_CC_IN, data1, HID_CC_IN_RPT_LEN);
     vTaskDelay(100 / portTICK_PERIOD_MS);
     return ret;
 }
