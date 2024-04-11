@@ -27,7 +27,7 @@
 #include "esp_hid_device.h"
 #include "nvs_flash.h"
 
-static const char *TAG = "HID_DEV_DEMO";
+static const char *TAG = "COMPONENT BLE";
 extern struct acc_values *data;
 
 typedef struct
@@ -161,13 +161,21 @@ uint8_t buffer[HID_CC_IN_RPT_LEN] = {0x0, 0x0};
  * @return: ESP_OK on success
  */
 
-esp_err_t ble_hid_task(void *data)
+esp_err_t ble_hid_task(int16_t *data)
 {
     esp_err_t ret;
-    struct acc_values *data1 = (struct acc_values *)(data);
-    ESP_LOGI(TAG, "acce_raw_value = %d %d %d", data1->ax, data1->ay, data1->az);
-    ret = esp_hidd_dev_input_set(s_ble_hid_param.hid_dev, 1, HID_RPT_ID_CC_IN, data1, HID_CC_IN_RPT_LEN);
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+
+    ///// This will go ///////
+    uint8_t data_to_send[3];
+    data_to_send[0] = data[0];
+    data_to_send[0] = data[1];
+    data_to_send[0] = data[2];
+    ESP_LOGI(TAG, "Sending data: %x %x %x", data_to_send[0], data_to_send[1], data_to_send[2]);
+    //////////////////////////
+
+    ret = esp_hidd_dev_input_set(s_ble_hid_param.hid_dev, 1, HID_RPT_ID_CC_IN, data_to_send, sizeof(data_to_send));
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+
     return ret;
 }
 
@@ -235,7 +243,7 @@ void ble_hidd_event_callback(void *handler_args, esp_event_base_t base, int32_t 
     return;
 }
 
-void setup(void)
+void setup_ble(void)
 {
     esp_err_t ret;
 #if HID_DEV_MODE == HIDD_IDLE_MODE
