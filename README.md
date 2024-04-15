@@ -46,7 +46,7 @@ After this MPU6050 will start recording gestures and ESP32 will send them to the
 
 if (SWITCH_1 hold) {
     send gesture data
-} else if (SWITCH_2 hold) {
+} else if (SWITCH_4 hold) {
     send end sequence
 }
 ```

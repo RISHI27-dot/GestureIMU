@@ -7,7 +7,7 @@ esp_err_t enable_switches()
 {
     gpio_config_t io_conf;
     /* bit mask for the pins, each bit maps to a GPIO */
-    io_conf.pin_bit_mask = ((1ULL << SWITCH_1) | (1ULL << SWITCH_2));
+    io_conf.pin_bit_mask = ((1ULL << SWITCH_1) | (1ULL << SWITCH_2) | (1ULL << SWITCH_3) | (1ULL << SWITCH_4));
     /* set gpio mode to input */
     io_conf.mode = GPIO_MODE_INPUT;
     /* enable pull up resistors */

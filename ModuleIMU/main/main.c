@@ -57,7 +57,7 @@ void app_main()
             goto err;
           }
         }
-        else if (read_switch(SWITCH_2)) {
+        else if (read_switch(SWITCH_4)) {
           if (ble_hid_task(end_seq) != ESP_OK)
           {
             ESP_LOGE(TAG, "%s", "Failed to send end sequence !!");
