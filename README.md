@@ -1,3 +1,25 @@
+# Prerequisites
+
+1. `Python3` for running python scripts
+```
+sudo apt install python3
+```
+
+2. `ESP-IDF` for building the esp32 app and flashing it into esp32
+
+    Refer - [Get Started](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html)
+
+3. `hcidump` tool for logging the data received via BLE on Host
+```
+sudo apt install bluez-hcidump
+```
+
+4. `clang-format` for code formatting
+
+```
+sudo apt install clang-format
+```
+
 # File Structure
 
 The project contains two folders
