@@ -88,3 +88,11 @@ The `<gesture>` argument of the python script signifies the gesture for which `.
 This will generate multiple `.csv` of the naming convention `a_b.csv` in the `Host/csv/`directory. Here `a` is the gesture and `b` is the sequence number.
 
 Example - File no `3` of the gesture `7` will have name `7_3.csv`
+
+# Contributing
+
+Code Formatting :
+```
+chmod +x code_format.sh 
+./code_format.sh
+```

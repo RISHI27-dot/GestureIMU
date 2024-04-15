@@ -20,10 +20,10 @@
 
 #define I2C_MASTER_SCL_IO MPU6050_SCL /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO MPU6050_SDA /*!< gpio number for I2C master data  */
-#define I2C_MASTER_NUM I2C_NUM_1      /*!< I2C port number for master dev */
-#define I2C_MASTER_TX_BUF_DISABLE 0   /*!< I2C master do not need buffer */
-#define I2C_MASTER_RX_BUF_DISABLE 0   /*!< I2C master do not need buffer */
-#define I2C_MASTER_FREQ_HZ 100000     /*!< I2C master clock frequency */
+#define I2C_MASTER_NUM I2C_NUM_1 /*!< I2C port number for master dev */
+#define I2C_MASTER_TX_BUF_DISABLE 0 /*!< I2C master do not need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master do not need buffer */
+#define I2C_MASTER_FREQ_HZ 100000 /*!< I2C master clock frequency */
 
 #define mpu_RA_PWR_MGMT_1 0x6B
 #define mpu_CLOCK_PLL_XGYRO 0x01
@@ -34,16 +34,16 @@
 #define mpu_RA_ACCEL_CONFIG 0x1C
 #define mpu_ACCEL_FS_2 0x00
 
-#define mpu_ADDR 0x68   /*!< slave address for mpu sensor */
+#define mpu_ADDR 0x68 /*!< slave address for mpu sensor */
 #define ACCE_START_ADDR 0x3B /*!< accelerometer start address */
 #define GYRO_START_ADDR 0x43 /*!< gyroscope start address */
 
 #define WRITE_BIT I2C_MASTER_WRITE /*!< I2C master write */
-#define READ_BIT I2C_MASTER_READ   /*!< I2C master read */
-#define ACK_CHECK_EN 0x1           /*!< I2C master will check ack from slave*/
-#define ACK_CHECK_DIS 0x0          /*!< I2C master will not check ack from slave */
-#define ACK_VAL 0x0                /*!< I2C ack value */
-#define NACK_VAL 0x1               /*!< I2C nack value */
+#define READ_BIT I2C_MASTER_READ /*!< I2C master read */
+#define ACK_CHECK_EN 0x1 /*!< I2C master will check ack from slave*/
+#define ACK_CHECK_DIS 0x0 /*!< I2C master will not check ack from slave */
+#define ACK_VAL 0x0 /*!< I2C ack value */
+#define NACK_VAL 0x1 /*!< I2C nack value */
 
 #define ALPHA 0.9834
 #define RAD_TO_DEG 57.2957795
@@ -113,7 +113,8 @@ void compute_acce_angle(int16_t ax, int16_t ay, int16_t az, float *acce_angle);
  * @param dt Sampling time for gyroscope readings (interval between 2 readings)
  * @param gyro_angle Resultant angle array
  */
-void compute_gyro_angle(int16_t gx, int16_t gy, int16_t gz, float dt, float *gyro_angle);
+void compute_gyro_angle(int16_t gx, int16_t gy, int16_t gz, float dt,
+			float *gyro_angle);
 
 /**
  * @brief A wrapper for reading the 8-bit raw values from MPU and then combining them to their final form 
@@ -133,7 +134,8 @@ esp_err_t read_mpu_raw(int16_t *acce_raw_value, int16_t *gyro_raw_value);
  * @param complementary_angle Resultant fused and filtered angle
  * @param mpu_offset Offset of the MPU (accelerometer) at rest position
  */
-void complementary_filter(int16_t *acce_raw_value, int16_t *gyro_raw_value, float *complementary_angle, float *mpu_offset);
+void complementary_filter(int16_t *acce_raw_value, int16_t *gyro_raw_value,
+			  float *complementary_angle, float *mpu_offset);
 
 /**
  * @brief The ultimate function (application ready); takes in the input raw values and initial conditions and gives out the complementary pitch and roll angles
@@ -152,6 +154,7 @@ esp_err_t read_mpu(float *euler_angle, float *mpu_offset);
  * @param gyro_offs Offset to be applied to the gyroscope raw values.
  * @return esp_err_t returns ESP_OK if successful, else ESP_FAIL
  */
-esp_err_t avg_sensors(int16_t *acce_raw_value_avg, int16_t *gyro_raw_value_avg, const int16_t *acce_offs, const int16_t *gyro_offs);
+esp_err_t avg_sensors(int16_t *acce_raw_value_avg, int16_t *gyro_raw_value_avg,
+		      const int16_t *acce_offs, const int16_t *gyro_offs);
 
 #endif
