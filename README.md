@@ -1,4 +1,6 @@
-# Prerequisites
+# GestureIMU
+
+## Prerequisites
 
 1. `Python3` for running python scripts
 ```
@@ -20,30 +22,30 @@ sudo apt install bluez-hcidump
 sudo apt install clang-format
 ```
 
-# File Structure
+## File Structure
 
 The project contains two folders
 
-## ModuleIMU
+### ModuleIMU
 This folder contains the esp idf project. It will handle the following things
 - [x] Interfacing of MPU6050
-- [x] Sending the data acquired from MPU6050 to the host PC via BLE.
+- [x] Sending the data acquired from MPU6050 to the host PC via BLE
 
-## Host
+### Host
 This folder contains the code that will run on the host. It will handle the following things
-- [x] Parsing the `.txt` files where the gesture data received via BLE is dumped.
-- [x] Generating data set.
-- [ ] Training and running ML model on the data.
+- [x] Parsing the `.txt` files where the gesture data received via BLE is dumped
+- [x] Generating data set
+- [ ] Training and running ML model on the data
 
-# Usage
+## Usage
 
-## Clone the repo
+### Clone the repo
 ```
 git clone git@github.com:RISHI27-dot/GestureIMU.git
 cd GestureIMU
 ```
 
-## Sensor Data Acquisition
+### Sensor Data Acquisition
 Connect the module to your host PC and open two terminals.
 
 Terminal 1:
@@ -74,7 +76,7 @@ if (SWITCH_1 hold) {
 ```
 The shell script running in the Terminal 1 will be recording the value sent by ESP32 and received by the host PC into the corresponding `.txt` file.
 
-## Data Set Generation
+### Data Set Generation
 After the data for one gesture is recorded, kill the command in Terminal 1 using `Ctrl + C`. You will see `<gesture>.txt` file in the `Host/txt/` directory.
 
 To generate CSV data, run the following command.
@@ -89,7 +91,7 @@ This will generate multiple `.csv` of the naming convention `a_b.csv` in the `Ho
 
 Example - File no `3` of the gesture `7` will have name `7_3.csv`
 
-# Contributing
+## Contributing
 
 Code Formatting :
 ```
