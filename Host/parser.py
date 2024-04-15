@@ -1,9 +1,19 @@
 import csv
 import numpy as np
 import sys
+import os
+
+if len(sys.argv) < 2:
+    print("Please provide a gesture among -> 0 2 9")
+    exit()
 
 txt_prefix = "txt/"+sys.argv[1]
 bt_txt_file_name = txt_prefix + ".txt"
+if not os.path.exists(bt_txt_file_name):
+    print("The file", bt_txt_file_name,"has not been generated")
+    print("Run the following command to generate it")
+    print("     ./record_gesture.sh " + sys.argv[1])
+    exit()
 bt_txt_file = open(bt_txt_file_name, "r")
 data = bt_txt_file.readlines()
 
@@ -20,6 +30,7 @@ print("-------------------------------------")
 
 end_seq_flag = 0
 file_count = 1
+sr_no = 1
 
 for line in data:
     # Obtain the current line
@@ -37,10 +48,11 @@ for line in data:
 
         if(end_seq_flag == 1):
             new_file_name = csv_prefix + "_" + str(file_count) + ".csv"
+            sr_no = 1
 
-            print("-------------------------------------")
+            print("---------------------------------------------")
             print("writing to the file", new_file_name)
-            print("-------------------------------------")
+            print("---------------------------------------------")
 
             bt_csv_file = open(new_file_name, "w")
             csvwriter = csv.writer(bt_csv_file)
@@ -53,11 +65,12 @@ for line in data:
         az = np.int16(((raw_values[4] << 8) + raw_values[5]))
 
         # Log
-        print("ax = ", ax, "ay = ", ay, "az = ", az)
+        print("{:4d}: ax = {:6d} | ay = {:6d} | az = {:6d}".format(sr_no, ax, ay, az))
 
         # Write to the CSV
         acc_list = [ax, ay, az]
         csvwriter.writerow(acc_list)
+        sr_no = sr_no + 1
         end_seq_flag = 0
     else:
         end_seq_flag = 1
