@@ -16,13 +16,12 @@ extern SemaphoreHandle_t mutex;
 /**
  * I2C device descriptor
  */
-typedef struct
-{
-    i2c_port_t port;         //!< I2C port number
-    i2c_config_t cfg;        //!< I2C driver configuration
-    uint8_t addr;            //!< Unshifted address
-    SemaphoreHandle_t mutex; //!< Device mutex
-    uint32_t timeout_ticks;  /*!< HW I2C bus timeout (stretch time), in ticks. 80MHz APB clock
+typedef struct {
+	i2c_port_t port; //!< I2C port number
+	i2c_config_t cfg; //!< I2C driver configuration
+	uint8_t addr; //!< Unshifted address
+	SemaphoreHandle_t mutex; //!< Device mutex
+	uint32_t timeout_ticks; /*!< HW I2C bus timeout (stretch time), in ticks. 80MHz APB clock
                                   ticks for ESP-IDF, CPU ticks for ESP8266.
                                   When this value is 0, I2CDEV_MAX_STRETCH_TIME will be used */
 } i2c_dev_t;
@@ -101,7 +100,7 @@ esp_err_t i2c_dev_give_mutex(i2c_dev_t *dev);
  * @return ESP_OK on success
  */
 esp_err_t i2c_dev_read(const i2c_dev_t *dev, const void *out_data,
-        size_t out_size, void *in_data, size_t in_size);
+		       size_t out_size, void *in_data, size_t in_size);
 
 /**
  * @brief Write to slave device
@@ -117,7 +116,8 @@ esp_err_t i2c_dev_read(const i2c_dev_t *dev, const void *out_data,
  * @return ESP_OK on success
  */
 esp_err_t i2c_dev_write(const i2c_dev_t *dev, const void *out_reg,
-        size_t out_reg_size, const void *out_data, size_t out_size);
+			size_t out_reg_size, const void *out_data,
+			size_t out_size);
 
 /**
  * @brief Read from register with an 8-bit address
@@ -130,8 +130,8 @@ esp_err_t i2c_dev_write(const i2c_dev_t *dev, const void *out_reg,
  * @param in_size Number of byte to read
  * @return ESP_OK on success
  */
-esp_err_t i2c_dev_read_reg(const i2c_dev_t *dev, uint8_t reg,
-        void *in_data, size_t in_size);
+esp_err_t i2c_dev_read_reg(const i2c_dev_t *dev, uint8_t reg, void *in_data,
+			   size_t in_size);
 
 /**
  * @brief Write to register with an 8-bit address
@@ -145,34 +145,40 @@ esp_err_t i2c_dev_read_reg(const i2c_dev_t *dev, uint8_t reg,
  * @return ESP_OK on success
  */
 esp_err_t i2c_dev_write_reg(const i2c_dev_t *dev, uint8_t reg,
-        const void *out_data, size_t out_size);
+			    const void *out_data, size_t out_size);
 
-#define I2C_DEV_TAKE_MUTEX(dev) do { \
-        esp_err_t __ = i2c_dev_take_mutex(dev); \
-        if (__ != ESP_OK) return __;\
-    } while (0)
+#define I2C_DEV_TAKE_MUTEX(dev)                         \
+	do {                                            \
+		esp_err_t __ = i2c_dev_take_mutex(dev); \
+		if (__ != ESP_OK)                       \
+			return __;                      \
+	} while (0)
 
-#define I2C_DEV_GIVE_MUTEX(dev) do { \
-        esp_err_t __ = i2c_dev_give_mutex(dev); \
-        if (__ != ESP_OK) return __;\
-    } while (0)
+#define I2C_DEV_GIVE_MUTEX(dev)                         \
+	do {                                            \
+		esp_err_t __ = i2c_dev_give_mutex(dev); \
+		if (__ != ESP_OK)                       \
+			return __;                      \
+	} while (0)
 
-#define I2C_DEV_CHECK(dev, X) do { \
-        esp_err_t ___ = X; \
-        if (___ != ESP_OK) { \
-            I2C_DEV_GIVE_MUTEX(dev); \
-            return ___; \
-        } \
-    } while (0)
+#define I2C_DEV_CHECK(dev, X)                    \
+	do {                                     \
+		esp_err_t ___ = X;               \
+		if (___ != ESP_OK) {             \
+			I2C_DEV_GIVE_MUTEX(dev); \
+			return ___;              \
+		}                                \
+	} while (0)
 
-#define I2C_DEV_CHECK_LOGE(dev, X, msg, ...) do { \
-        esp_err_t ___ = X; \
-        if (___ != ESP_OK) { \
-            I2C_DEV_GIVE_MUTEX(dev); \
-            ESP_LOGE(TAG, msg, ## __VA_ARGS__); \
-            return ___; \
-        } \
-    } while (0)
+#define I2C_DEV_CHECK_LOGE(dev, X, msg, ...)               \
+	do {                                               \
+		esp_err_t ___ = X;                         \
+		if (___ != ESP_OK) {                       \
+			I2C_DEV_GIVE_MUTEX(dev);           \
+			ESP_LOGE(TAG, msg, ##__VA_ARGS__); \
+			return ___;                        \
+		}                                          \
+	} while (0)
 
 #ifdef __cplusplus
 }
