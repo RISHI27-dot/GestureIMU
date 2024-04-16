@@ -85,7 +85,7 @@ Terminal 1:
 ```
 python3 parser.py <gesture>
 ```
-The `<gesture>` argument of the python script signifies the gesture for which `.csv` are being generated. Pass `0` for gesture 0, Pass `7` for gesture of 7 etc.
+The `<gesture>` argument of the python script signifies the gesture for which `.csv` are being generated. Pass `0` for gesture 0, Pass `7` for gesture of 7 etc. Make sure that the gesture passed in the above command is same as passed during `.txt` file generation.
 
 This will generate multiple `.csv` of the naming convention `a_b.csv` in the `Host/csv/`directory. Here `a` is the gesture and `b` is the sequence number.
 
