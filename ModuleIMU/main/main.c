@@ -64,7 +64,7 @@ void app_main()
 					ESP_LOGI(TAG, ". . . . .");
 				}
 
-				vTaskDelay(100 / portTICK_PERIOD_MS);
+				vTaskDelay(10 / portTICK_PERIOD_MS);
 			}
 		}
 	}

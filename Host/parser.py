@@ -56,6 +56,7 @@ for line in data:
 
             bt_csv_file = open(new_file_name, "w")
             csvwriter = csv.writer(bt_csv_file)
+            csvwriter.writerow(fields)
 
             file_count = file_count + 1
         
