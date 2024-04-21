@@ -51,6 +51,11 @@ managed_components/
 # Kernel Module Compile Results
 *.mod*
 *.cmd
+
+#Data Set
+*.csv
+*.txt
+
 .tmp_versions/
 modules.order
 Module.symvers
