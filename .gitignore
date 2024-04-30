@@ -54,7 +54,6 @@ managed_components/
 
 #Data Set
 *.csv
-*.txt
 
 .tmp_versions/
 modules.order
@@ -97,6 +96,15 @@ _deps
 ### CMake Patch ###
 # External projects
 *-prefix/
+
+# Python
+bin
+include
+lib
+lib64
+__pycache__
+pyvenv.*
+.env
 
 ### vscode ###
 .vscode/
