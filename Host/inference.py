@@ -39,7 +39,7 @@ def get_average(filepath: Path, model_type: str, average_window: int, n_observat
     for i in range(0, n_observations, average_window):
         average = df.iloc[i:(i+average_window)].mean()
         if type(average) is pd.Series:
-            averaged_array.append(float(average[0]))
+            averaged_array.append(float(average.iloc[0]))
         else:
             averaged_array.append(float(average))
     
