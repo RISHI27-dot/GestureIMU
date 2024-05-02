@@ -4,7 +4,7 @@ import sys
 import os
 
 if len(sys.argv) < 2:
-    print("Please provide a gesture among -> 0 2 9")
+    print("Please provide a gesture")
     exit()
 
 txt_prefix = "txt/"+sys.argv[1]
@@ -28,6 +28,7 @@ print("-------------------------------------")
 print("writing to the file", bt_csv_file_name)
 print("-------------------------------------")
 
+ax_values = []
 end_seq_flag = 0
 file_count = 1
 sr_no = 1
@@ -70,6 +71,7 @@ for line in data:
 
         # Write to the CSV
         acc_list = [ax, ay, az]
+        ax_values.append(ax)
         csvwriter.writerow(acc_list)
         sr_no = sr_no + 1
         end_seq_flag = 0
