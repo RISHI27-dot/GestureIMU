@@ -53,6 +53,7 @@ managed_components/
 *.cmd
 
 #Data Set
+*.txt
 *.csv
 
 .tmp_versions/
