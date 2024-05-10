@@ -5,7 +5,7 @@ import numpy as np
 class AccelerationClassifier(object):
     def __init__(
         self,
-        model_path='./Host/models/nn_gesture.tflite',
+        model_path='./models/nn_gesture.tflite',
         num_threads=1,
     ):
         self.interpreter = tf.Interpreter(model_path=model_path, num_threads=num_threads)

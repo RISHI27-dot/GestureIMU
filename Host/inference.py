@@ -11,7 +11,7 @@ def get_sign(average_array: np.ndarray, model_type: str, n_features: int):
         raise ValueError('Incorrect length of average array')
     
     if model_type=='knn':
-        with open('./Host/models/knn_gesture.pkl', 'rb') as f:
+        with open('./models/knn_gesture.pkl', 'rb') as f:
             model = pickle.load(f)
         res = model.predict([average_array])
     else:
