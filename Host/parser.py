@@ -6,7 +6,7 @@ import argparse
 
 from inference import get_average
 
-def func():
+def generate_dataset():
    if len(sys.argv) < 2:
        print("Please provide a gesture")
        exit()
@@ -99,10 +99,10 @@ def func():
 
 if __name__ == "__main__":
    if sys.argv[1] == '-t':
-       test_file = './Host/csv/test.csv'
+       test_file = './Host/csv/input.csv'
        res = get_average(filepath=test_file, model_type='nnet', n_observations=105, average_window=15)
        print(res)
    elif sys.argv[1] == '-d':
-       func()
+       generate_dataset()
    else:
        raise ValueError('Invalid flag passed')
