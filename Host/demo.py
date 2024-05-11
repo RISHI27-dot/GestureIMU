@@ -66,7 +66,7 @@ def generate_dataset():
             az = np.int16(((raw_values[4] << 8) + raw_values[5]))
 
             # Log
-            print("{:4d}: ax = {:6d} | ay = {:6d} | az = {:6d}".format(sr_no, ax, ay, az))
+            # print("{:4d}: ax = {:6d} | ay = {:6d} | az = {:6d}".format(sr_no, ax, ay, az))
 
             # Write to the CSV
             acc_list = [ax, ay, az]

@@ -27,6 +27,7 @@ def get_average(filepath: Path, model_type: str, average_window: int, n_observat
     df = pd.read_csv(filepath)
     df.drop(labels=['ay', 'az'], axis=1, inplace=True)
     df = (df - df.min())/(df.max()-df.min())*2-1
+    print(df.shape[0])
     if df.shape[0] < n_observations:
         #Pad data with median if the length does not match sufficient features
         add = pd.Series([np.median(df) for _ in range(n_observations-df.shape[0])])

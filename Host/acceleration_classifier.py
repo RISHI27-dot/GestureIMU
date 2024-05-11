@@ -12,6 +12,7 @@ class AccelerationClassifier(object):
 
         self.interpreter.allocate_tensors()
         self.input_details = self.interpreter.get_input_details()
+        print(self.input_details)
         self.output_details = self.interpreter.get_output_details()
 
     def __call__(
