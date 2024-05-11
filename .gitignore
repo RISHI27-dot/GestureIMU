@@ -54,6 +54,7 @@ managed_components/
 
 #Data Set
 *.csv
+*.txt
 
 .tmp_versions/
 modules.order
