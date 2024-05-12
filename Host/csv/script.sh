@@ -14,7 +14,7 @@ for (( i=0; i<${#input_string}; i++ )); do
     test_file_name+=.csv
     # echo $test_file_name
 
-    r=$((1 + RANDOM % 60))
+    r=$((1 + RANDOM % 74))
     random_file_name="$char_$r.csv"
     random_file_name="$char"
     random_file_name+=_
