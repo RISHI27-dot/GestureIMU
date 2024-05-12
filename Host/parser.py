@@ -12,18 +12,18 @@ def func():
        exit()
 
 
-   txt_prefix = "txt/"+sys.argv[1]
+   txt_prefix = "txt/"+sys.argv[2]
    bt_txt_file_name = txt_prefix + ".txt"
    if not os.path.exists(bt_txt_file_name):
        print("The file", bt_txt_file_name,"has not been generated")
        print("Run the following command to generate it")
-       print("     ./record_gesture.sh " + sys.argv[1])
+       print("     ./record_gesture.sh " + sys.argv[2])
        exit()
    bt_txt_file = open(bt_txt_file_name, "r")
    data = bt_txt_file.readlines()
 
 
-   csv_prefix = "csv/"+sys.argv[1]
+   csv_prefix = "csv/"+sys.argv[2]
    bt_csv_file_name = csv_prefix + "_" + "0" + ".csv"
    bt_csv_file = open(bt_csv_file_name, "w")
    fields = ['ax', 'ay', 'az']
