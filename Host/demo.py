@@ -82,7 +82,7 @@ def generate_dataset():
 if __name__ == "__main__":
    if sys.argv[1] == '-t':
        test_file = './csv/input_0.csv'
-       res = get_average(filepath=test_file, model_type='nnet', n_observations=105, average_window=15)
+       res = get_average(filepath=test_file, model_type='nnet', n_observations=120, average_window=10)
        print(res)
    elif sys.argv[1] == '-d':
        generate_dataset()
